@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+ 
 
 public class SpellChecker {
     private ArrayList<String> dictionary;
@@ -41,7 +41,7 @@ public class SpellChecker {
         return false;
     }
 
-
+ 
 
     /** This uses BINARY search to find a word in dictionary and returns
      *  true if the word is in dictionary and false otherwise.
@@ -50,6 +50,30 @@ public class SpellChecker {
      *  prints that value out before returning.
      */
     public boolean binarySpellCheck(String word) {
+        // int counter = 0;
+        int leftIdx = 0;
+        int rightIdx = dictionary.size() - 1;
+        while (leftIdx <= rightIdx) {
+            // counter ++;
+            loopCounter ++;
+            int middleIdx = leftIdx + (rightIdx - leftIdx) / 2;
+            String midWrd = dictionary.get(middleIdx);
+
+            if (dictionary.get(0).equals(word)) {
+                return true;
+            }
+
+            if (midWrd.equals(word)) {
+                System.out.println(loopCounter);
+                return true;
+            } else if (midWrd.compareTo(word) < 0) {
+                leftIdx = middleIdx + 1;
+            } else {
+                rightIdx = middleIdx - 1;
+            }
+        }
+
+        System.out.println(loopCounter);
         return false;
     }
 
